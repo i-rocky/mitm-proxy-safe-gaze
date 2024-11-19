@@ -1,0 +1,9 @@
+.idea
+localhost.crt
+localhost.key
+page.html
+page-new.html
+certs
+cmd/test/debug
+cmd/test/resp.html
+cmd/test/resp-new.html
