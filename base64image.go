@@ -100,7 +100,7 @@ func replaceBase64Images(content string) string {
 			base64.StdEncoding.Encode(pickedImages[i].Replacement, body)
 			withoutPrefix = image.Replacement[strings.Index(string(image.Replacement), ",")+1:]
 			data := pickedImages[i].Replacement
-			prefix := []byte("data:image/jpeg;base64,")
+			prefix := []byte("data:image/png;base64,")
 			pickedImages[i].Replacement = make([]byte, len(prefix)+base64.StdEncoding.EncodedLen(len(data)))
 			pickedImages[i].Replacement = append(prefix, data...)
 		}(i, image)

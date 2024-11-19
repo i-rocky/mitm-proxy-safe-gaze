@@ -26,16 +26,10 @@ func onResponse(session *gomitmproxy.Session) *http.Response {
 			return res
 		}
 
-		imgBytes, err := io.ReadAll(imgRes.Body)
-		if err != nil {
-			res.StatusCode = http.StatusInternalServerError
-			return res
-		}
-
-		res.Header.Set("Content-Type", "image/jpeg")
-		res.Body = io.NopCloser(bytes.NewReader(imgBytes))
-		res.ContentLength = int64(len(imgBytes))
-		res.StatusCode = http.StatusOK
+		res.Header.Set("Content-Type", imgRes.Header.Get("Content-Type"))
+		res.Body = imgRes.Body
+		res.ContentLength = imgRes.ContentLength
+		res.StatusCode = imgRes.StatusCode
 
 		return res
 	}
